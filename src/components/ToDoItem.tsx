@@ -6,7 +6,7 @@ export default function ToDoItem(props: TTaskTodo) {
     const { completeTodo, removeTodo } = useTodoStore()
 
     return (
-        <div className='w-full flex items-center'>
+        <li className='w-full flex items-center'>
             <div className='w-full flex items-center justify-between'>
                 <label className='flex items-center gap-4 rounded py-2 px-1'>
                     <input
@@ -39,6 +39,6 @@ export default function ToDoItem(props: TTaskTodo) {
                     </svg>
                 </span>
             </div>
-        </div>
+        </li>
     )
 }

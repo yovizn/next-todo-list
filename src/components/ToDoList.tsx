@@ -6,7 +6,8 @@ import ToDoItem from './ToDoItem'
 
 export default function ToDoList() {
     const [input, setInput] = useState('')
-    const { addTodo, todos } = useTodoStore()
+    const { todos, addTodo } = useTodoStore()
+    let number = 0
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -26,15 +27,27 @@ export default function ToDoList() {
     return (
         <div className='py-10 w-full'>
             <div className='mx-auto max-w-screen-lg flex flex-col justify-between items-center h-screen'>
-                <div className='flex flex-col items-center h-1/2 w-full border rounded border-zinc-600 bg-zinc-800 overflow-y-auto overflow-x-hidden px-4 py-2'>
-                    {todos.map((todo, idx) => (
-                        <ToDoItem
-                            key={idx}
-                            id={todo.id}
-                            title={todo.title}
-                            complete={todo.complete}
-                        />
-                    ))}
+                <div className='relative flex flex-col items-center h-1/2 w-full border rounded border-zinc-600 bg-zinc-800 overflow-y-auto overflow-x-hidden px-4 py-2'>
+                    <ul className='w-full'>
+                        {todos.map((todo, idx) => (
+                            <ToDoItem
+                                key={idx}
+                                id={todo.id}
+                                title={todo.title}
+                                complete={todo.complete}
+                            />
+                        ))}
+                    </ul>
+
+                    <div className='absolute bottom-4 right-10'>
+                        <p>
+                            Todo Done:{' '}
+                            {
+                                todos.filter((todo) => todo.complete === true)
+                                    .length
+                            }
+                        </p>
+                    </div>
                 </div>
 
                 <div className='w-full h-1/2 py-4'>
